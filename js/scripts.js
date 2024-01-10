@@ -7,10 +7,10 @@ let pokemonList=[
     {
         name: 'Beedrill',
         height: 1,
-        type: 'Bug'
+        type: ['Bug']
     }, 
     {
         name: 'Electrode',
         height: 2,
-        type: 'Mineral'
+        type: ['Mineral']
     }];
