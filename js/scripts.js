@@ -16,14 +16,18 @@ let pokemonList=[
         type: ['Electric']
     }];
 
-    return {
-        getAll : function(){
-            return pokemonList;
-        },
-        add: function (item) {
-            pokemonList.push(item);
-      }
+    function getAll() {
+        return pokemonList;
     }
+
+    function add(item) {
+        pokemonList.push(item);
+    }
+
+    return {
+        getAll: getAll,
+        add: add
+    };
 
 }) ();
 console.log( pokemonRepository.getAll());
