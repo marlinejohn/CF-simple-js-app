@@ -1,3 +1,4 @@
+let pokemonRepository = (function(){
 let pokemonList=[
     {
         name: 'Bulbasaur',
@@ -15,25 +16,29 @@ let pokemonList=[
         type: ['Electric']
     }];
 
-    // // Display names and height from the pokemonList.
-
-    // for(let i = 0; i < pokemonList.length; i++ ){
-    // // Display extra note if height of a character is greater than 3.1
-    //     if (pokemonList[i].height > 3.1){
-    //         document.write('<p>', pokemonList[i].name + ': ' + pokemonList[i].height + ' .Wow, that\'s big !! </p>');
-    //     } else{
-    //         document.write('<p>', pokemonList[i].name + ': ' + pokemonList[i].height  + ' </p>');
-
-    //     }    
-    // }
-
-    function displayPokemon(list){
-        if (list.height > 3.1){
-            document.write( '<p>', list.name + ': ' + list.height + ' .Wow, that\'s big !! </p>');
-        } else{
-            document.write('<p>', list.name + ': ' + list.height  + ' </p>');
-        }    
+    return {
+        getAll : function(){
+            return pokemonList;
+        },
+        add: function (item) {
+            pokemonList.push(item);
+      }
     }
 
-    pokemonList.forEach(displayPokemon)
+}) ();
+console.log( pokemonRepository.getAll());
+console.log(pokemonRepository.add({ name: "Golem", height: 1.4, type: ['mineral'] }));
+
+
+
+pokemonRepository.getAll().forEach(function(pokemon){
+        if (pokemon.height > 3.1){
+            document.write( '<p>', pokemon.name + ': ' + pokemon.height + ' .Wow, that\'s big !! </p>');
+        } else{
+            document.write('<p>', pokemon.name + ': ' + pokemon.height  + ' </p>');
+        }    
+    })
+
+
+
     
