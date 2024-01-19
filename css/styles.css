@@ -1,3 +1,12 @@
 h1{
     color: red;
 }
+
+.name-btn{
+    background-color : rgb(187, 239, 187);
+    border: none;
+    border-radius: 3px;  
+    font-size: 16;
+    margin: 10px 15px;
+    padding: 15px ;
+}
