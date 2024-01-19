@@ -33,12 +33,17 @@ let pokemonList=[
         let button = document.createElement('button');
         button.innerHTML = pokemon.name;
         li.appendChild(button);
-        button.classList.add('name-btn')
-        button.addEventListener('click', showDetails())
+        button.classList.add('name-btn');
+        // button.addEventListener('click', showDetails(pokemon));
+        addEventListenerToButton(button, pokemon)
     }
-
-    function showDetails(pokemon){
-        console.log(pokemon)
+    function addEventListenerToButton(button, pokemon) {
+        button.addEventListener('click', function () {
+            showDetails(pokemon);
+        })
+        function showDetails(pokemon) {
+            console.log(pokemon);
+        }
     }
 
     return {
@@ -46,9 +51,6 @@ let pokemonList=[
         add: add,
         addListItem: addListItem
     };
-
-    
-
 }) ();
 console.log( pokemonRepository.getAll());
 console.log(pokemonRepository.add({ name: "Golem", height: 1.4, type: ['mineral'] }));
