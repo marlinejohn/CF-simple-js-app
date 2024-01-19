@@ -23,6 +23,8 @@ let pokemonList=[
     function add(item) {
         pokemonList.push(item);
     }
+
+    // To add, append elements (li & button) and event listener.
     function addListItem(pokemon){
         let pokemonList = document.querySelector('.pokemon-list');
         let li = document.createElement('li');
@@ -32,6 +34,11 @@ let pokemonList=[
         button.innerHTML = pokemon.name;
         li.appendChild(button);
         button.classList.add('name-btn')
+        button.addEventListener('click', showDetails())
+    }
+
+    function showDetails(pokemon){
+        console.log(pokemon)
     }
 
     return {
@@ -50,12 +57,6 @@ console.log(pokemonRepository.add({ name: "Golem", height: 1.4, type: ['mineral'
 
 pokemonRepository.getAll().forEach(function(pokemon){
    
-
-        // if (pokemon.height > 3.1){
-        //     document.write( '<p>', pokemon.name + ': ' + pokemon.height + ' .Wow, that\'s big !! </p>');
-        // } else{
-        //     document.write('<p>', pokemon.name + ': ' + pokemon.height  + ' </p>');
-        // }  
         pokemonRepository.addListItem(pokemon)  
     })
 
