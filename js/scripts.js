@@ -1,27 +1,13 @@
 let pokemonRepository = (function(){
-let pokemonList=[
-    {
-        name: 'Bulbasaur',
-        height: 2.04,
-        type: ['Monster', 'Grass']
-    }, 
-    {
-        name: 'Beedrill',
-        height: 3.03,
-        type: ['Bug']
-    }, 
-    {
-        name: 'Electrode',
-        height: 3.11,
-        type: ['Electric']
-    }];
+let pokemonList=[] ;
+let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
     function getAll() {
         return pokemonList;
     }
 
-    function add(item) {
-        pokemonList.push(item);
+    function add(pokemon) {
+        pokemonList.push(pokemon);  
     }
 
     // To add, append elements (li & button) and event listener.
@@ -34,33 +20,68 @@ let pokemonList=[
         button.innerHTML = pokemon.name;
         li.appendChild(button);
         button.classList.add('name-btn');
-        // button.addEventListener('click', showDetails(pokemon));
         addEventListenerToButton(button, pokemon)
     }
     function addEventListenerToButton(button, pokemon) {
         button.addEventListener('click', function () {
             showDetails(pokemon);
         })
-        function showDetails(pokemon) {
-            console.log(pokemon);
-        }
+        
     }
+
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          json.results.forEach(function (item) {
+            let pokemon = {
+              name: item.name,
+              detailsUrl: item.url
+            };
+            add(pokemon);
+            console.log(pokemon);  
+          });
+        }).catch(function (e) {
+          console.error(e);
+        })
+      }
+
+      function showDetails(item) {
+        pokemonRepository.loadDetails(item).then(function(){
+            console.log(item);
+        })
+    }
+
+      function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+          return response.json();
+        }).then(function (details) {
+          // Details we want to add
+          item.imageUrl = details.sprites.front_default;
+          item.height = details.height;
+          item.types = details.types;
+        }).catch(function (e) {
+          console.error(e);
+        });
+      }
+    
 
     return {
         getAll: getAll,
         add: add,
-        addListItem: addListItem
+        addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails
     };
 }) ();
-console.log( pokemonRepository.getAll());
-console.log(pokemonRepository.add({ name: "Golem", height: 1.4, type: ['mineral'] }));
 
 
-
+pokemonRepository.loadList().then(function(){
 pokemonRepository.getAll().forEach(function(pokemon){
-   
-        pokemonRepository.addListItem(pokemon)  
-    })
+    pokemonRepository.addListItem(pokemon)  
+    });
+})
 
 
 
