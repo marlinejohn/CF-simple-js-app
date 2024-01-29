@@ -78,13 +78,16 @@ let pokemonRepository = (function() {
     let modalTitle = document.querySelector('.modal-title');
     let modalHeader = document.querySelector('.modal-header');
     let modalFooter = document.querySelector('.modal-footer');
-
-    // modalTitle.innerHTML = pokemon.name;
     modalTitle.innerHTML = '';
     modalBody.innerHTML = '';
 
     let nameElement = document.createElement('h1');
-    nameElement.innerHTML = 'Name: ' + pokemon.name;
+    var capitalizedName = pokemon.name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    nameElement.innerHTML = 'Name: ' + capitalizedName;
+
+    let closeButtonElement = document.querySelector('.close');
+    let buttonSpan = document.querySelector('.close-span');
+    closeButtonElement.appendChild(buttonSpan);
 
     let imageFront = document.createElement('img');
     imageFront.classList.add('modal-img');
