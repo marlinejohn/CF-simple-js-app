@@ -47,6 +47,23 @@ let pokemonRepository = (function() {
     })
   }
 
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function(response) {
+      return response.json();
+    }).then(function(details) {
+      // Details we want to add
+      item.imageUrlFront = details.sprites.front_default;
+      item.imageUrlBack = details.sprites.back_default;
+      item.types = details.types;
+      item.height = details.height;
+      item.weight = details.weight;
+      item.abilities = details.abilities;
+    }).catch(function(e) {
+      console.error(e);
+    });
+  }
+
   let modal = document.querySelector('.modal');
 
   function showDetails(item) {
@@ -120,20 +137,6 @@ let pokemonRepository = (function() {
       hideModal();
     }
   });
-
-  function loadDetails(item) {
-    let url = item.detailsUrl;
-    return fetch(url).then(function(response) {
-      return response.json();
-    }).then(function(details) {
-      // Details we want to add
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
-    }).catch(function(e) {
-      console.error(e);
-    });
-  }
 
 
   return {
