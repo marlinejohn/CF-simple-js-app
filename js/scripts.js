@@ -86,8 +86,6 @@ let pokemonRepository = (function() {
     nameElement.innerHTML = 'Name: ' + capitalizedName;
 
     let closeButtonElement = document.querySelector('.close');
-    let buttonSpan = document.querySelector('.close-span');
-    closeButtonElement.appendChild(buttonSpan);
 
     let imageFront = document.createElement('img');
     imageFront.classList.add('modal-img');
