@@ -1,7 +1,10 @@
+/* eslint-disable no-prototype-builtins */
 (function (global, factory) {
+  // eslint-disable-next-line no-undef
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.WHATWGFetch = {})));
+    // eslint-disable-next-line no-undef
+    typeof define === 'function' && define.amd ? define(['exports'], factory) :
+      (factory((global.WHATWGFetch = {})));
 }(this, (function (exports) { 'use strict';
 
   var support = {
@@ -23,6 +26,7 @@
   };
 
   function isDataView(obj) {
+    // eslint-disable-next-line no-prototype-builtins
     return obj && DataView.prototype.isPrototypeOf(obj)
   }
 
@@ -125,6 +129,7 @@
 
   Headers.prototype.forEach = function(callback, thisArg) {
     for (var name in this.map) {
+      // eslint-disable-next-line no-prototype-builtins
       if (this.map.hasOwnProperty(name)) {
         callback.call(thisArg, this.map[name], name, this);
       }
