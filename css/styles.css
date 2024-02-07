@@ -1,3 +1,10 @@
+body{
+  background-color: rgb(182, 236, 236);
+}
+.container {
+  background-color: #a4acb1;
+  /* display: grid; */
+}
 h1{
   color: red;
 }

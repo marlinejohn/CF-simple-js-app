@@ -12,15 +12,15 @@ let pokemonRepository = (function() {
 
   // To add, append elements (li & button) and event listener.
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector('.list-group');
+    let pokemonList = document.querySelector('.pokemon-list');
     let li = document.createElement('li');
-    li.classList.add('list-group-item')
+    li.classList.add( 'col-12', 'col-md-4', 'mb-2')
     pokemonList.appendChild(li);
 
     let button = document.createElement('button');
     button.innerHTML = pokemon.name;
     li.appendChild(button);
-    button.classList.add('btn', 'btn-success');
+    button.classList.add('btn', 'btn-success', 'btn-block', 'btn-lg', 'w-100', 'mb-3');
     button.setAttribute('data-target', '#exampleModal');
     button.setAttribute('data-toggle', 'modal');
     addEventListenerToButton(button, pokemon)
