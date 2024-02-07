@@ -1,10 +1,20 @@
 body{
-  background-color: rgb(182, 236, 236);
+    background-color: #A5D8FF;
+
 }
 .container {
-  background-color: #a4acb1;
-  /* display: grid; */
+  background-color: #446376;
+  border-radius: 10px;
 }
+.page-header {
+  border-bottom: 2px solid rgb(101, 148, 169)
+}
+.page-header img {
+  display: block;
+  margin: auto;
+  padding: 20px ;
+}
+
 h1{
   color: red;
 }
@@ -19,25 +29,6 @@ h1{
   padding: 15px ;
 } 
 
-.modal {
-  display: none;
-}
-
-.modal .is-visible {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  height: 50%;
-  background: rgba(213, 183, 183, 0.954);
-  z-index: 999;
-  overflow: auto;
-  display: grid;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
 
 .modal-content {
   margin: auto;
@@ -47,4 +38,5 @@ h1{
   max-width: 700px;
   text-align: center;
 }
+
 
