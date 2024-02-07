@@ -3,92 +3,90 @@ let pokemonRepository = (function () {
   function t() {
     return e;
   }
-  function i(t) {
+  function n(t) {
     e.push(t);
   }
-  let n = document.querySelector('.modal');
+  let i = document.querySelector('.modal');
   function l() {
-    n.classList.remove('is-visible');
+    i.classList.remove('is-visible');
   }
   return (
     window.addEventListener('keydown', (e) => {
-      'Escape' === e.key && n.classList.contains('is-visible') && l();
+      'Escape' === e.key && i.classList.contains('is-visible') && l();
     }),
-    n.addEventListener('click', (e) => {
-      e.target === n && l();
+    i.addEventListener('click', (e) => {
+      e.target === i && l();
     }),
     {
       getAll: t,
-      add: i,
+      add: n,
       addListItem: function e(t) {
-        let i = document.querySelector('.list-group'),
-          l = document.createElement('li');
-        l.classList.add('list-group-item'), i.appendChild(l);
-        let a = document.createElement('button');
-        (a.innerHTML = t.name),
-        l.appendChild(a),
-        a.classList.add('btn', 'btn-success'),
-        a.setAttribute('data-target', '#exampleModal'),
-        a.setAttribute('data-toggle', 'modal'),
-        (function e(t, i) {
+        let n = document.querySelector('.pokemon-list'),
+          i = document.createElement('li');
+        i.classList.add('col-12', 'col-md-4', 'mb-2'), n.appendChild(i);
+        let l = document.createElement('button');
+        (l.innerHTML = t.name),
+        i.appendChild(l),
+        l.classList.add(
+          'btn',
+          'btn-success',
+          'btn-block',
+          'btn-lg',
+          'w-100',
+          'mb-3'
+        ),
+        l.setAttribute('data-target', '#exampleModal'),
+        l.setAttribute('data-toggle', 'modal'),
+        (function e(t, n) {
           t.addEventListener('click', function () {
             (function e(t) {
               pokemonRepository.loadDetails(t).then(function () {
                 (function e(t) {
-                  let i = document.querySelector('.modal-content'),
-                    l = document.querySelector('.modal-body'),
-                    a = document.querySelector('.modal-title'),
-                    o = document.querySelector('.modal-header'),
-                    r = document.querySelector('.modal-footer');
-                  (a.innerHTML = ''), (l.innerHTML = '');
-                  let s = document.createElement('h1');
-                  var d = t.name
+                  let n = document.querySelector('.modal-body'),
+                    i = document.querySelector('.modal-header');
+                  n.innerHTML = '';
+                  let l = document.querySelector('.modal-title');
+                  var a = t.name
                     .split(' ')
                     .map((e) => e.charAt(0).toUpperCase() + e.slice(1))
                     .join(' ');
-                  s.innerHTML = 'Name: ' + d;
-                  let c = document.querySelector('.close'),
-                    p = document.createElement('img');
-                  p.classList.add('modal-img'),
-                  (p.src = t.imageUrlFront),
-                  (p.alt = 'Front image of ' + t.name);
-                  let m = document.createElement('img');
-                  m.classList.add('modal-img'),
-                  (m.src = t.imageUrlBack),
-                  (m.alt = 'Back image of ' + t.name);
-                  let u = document.createElement('p'),
-                    h = [t.types[0].type.name];
-                  for (let f = 1; f < t.types.length; f++)
-                    h.push(', ' + t.types[f].type.name);
-                  u.innerHTML = 'Types: ' + h.join('');
-                  let g = document.createElement('p');
-                  g.innerHTML = 'Height: ' + t.height;
-                  let y = document.createElement('p');
-                  y.innerHTML = 'Weigth: ' + t.weight;
-                  let L = document.createElement('p'),
-                    b = [t.abilities[0].ability.name];
-                  for (let C = 1; C < t.abilities.length; C++)
-                    b.push(', ' + t.abilities[C].ability.name);
-                  (L.innerHTML = 'Abilities: ' + b.join('')),
-                  o.appendChild(a),
-                  a.appendChild(s),
-                  o.appendChild(c),
-                  l.appendChild(p),
-                  l.appendChild(m),
-                  l.appendChild(u),
-                  l.appendChild(g),
-                  l.appendChild(y),
-                  l.appendChild(L),
-                  i.appendChild(o),
+                  l.innerHTML = a;
+                  let o = document.querySelector('.close'),
+                    r = document.createElement('img');
+                  r.classList.add('modal-img'),
+                  (r.src = t.imageUrlFront),
+                  (r.alt = 'Front image of ' + t.name);
+                  let s = document.createElement('img');
+                  s.classList.add('modal-img'),
+                  (s.src = t.imageUrlBack),
+                  (s.alt = 'Back image of ' + t.name);
+                  let c = document.createElement('p'),
+                    d = [t.types[0].type.name];
+                  for (let p = 1; p < t.types.length; p++)
+                    d.push(', ' + t.types[p].type.name);
+                  c.innerHTML = 'Types: ' + d.join('');
+                  let m = document.createElement('p');
+                  m.innerHTML = 'Height: ' + t.height;
+                  let u = document.createElement('p');
+                  u.innerHTML = 'Weigth: ' + t.weight;
+                  let h = document.createElement('p'),
+                    f = [t.abilities[0].ability.name];
+                  for (let g = 1; g < t.abilities.length; g++)
+                    f.push(', ' + t.abilities[g].ability.name);
+                  (h.innerHTML = 'Abilities: ' + f.join('')),
                   i.appendChild(l),
-                  i.appendChild(r),
-                  n.appendChild(i),
-                  n.classList.add('is-visible');
+                  i.appendChild(o),
+                  n.appendChild(r),
+                  n.appendChild(s),
+                  n.appendChild(c),
+                  n.appendChild(m),
+                  n.appendChild(u),
+                  n.appendChild(h);
                 })(t);
               });
-            })(i);
+            })(n);
           });
-        })(a, t);
+        })(l, t);
       },
       loadList: function e() {
         return fetch('https://pokeapi.co/api/v2/pokemon/?limit=150')
@@ -97,7 +95,7 @@ let pokemonRepository = (function () {
           })
           .then(function (e) {
             e.results.forEach(function (e) {
-              i({ name: e.name, detailsUrl: e.url });
+              n({ name: e.name, detailsUrl: e.url });
             });
           })
           .catch(function (e) {

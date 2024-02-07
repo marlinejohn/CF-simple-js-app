@@ -1,3 +1,22 @@
+body {
+    background-color: #a5d8ff
+}
+
+.container {
+    background-color: #446376;
+    border-radius: 10px
+}
+
+.page-header {
+    border-bottom: 2px solid #6594a9
+}
+
+.page-header img {
+    display: block;
+    margin: auto;
+    padding: 20px
+}
+
 h1 {
     color: red
 }
@@ -10,26 +29,6 @@ h1 {
     font-size: 16;
     margin: 10px 15px;
     padding: 15px
-}
-
-.modal {
-    display: none
-}
-
-.modal .is-visible {
-    position: fixed;
-    padding: 20px;
-    box-sizing: border-box;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    height: 50%;
-    background: rgba(213, 183, 183, .954);
-    z-index: 999;
-    overflow: auto;
-    display: grid;
-    text-align: center;
-    transform: translate(-50%, -50%)
 }
 
 .modal-content {
